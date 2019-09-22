@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  # Nginx Service Container
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./app/:/app
+      - ./nginx/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  # PHP (fpm) app container
+  php:
+    build: ./php/
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./app/:/app
+    networks:
+      - app-network
+
+  # Mysql data container
+  data:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - ./mysql/cnf/:/etc/mysql/conf.d/
+      - ./mysql/data/:/var/lib/mysql/
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
