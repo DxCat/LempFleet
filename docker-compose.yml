@@ -4,12 +4,11 @@ services:
   # Nginx Service Container
   nginx:
     image: nginx:alpine
-    container_name: nginx
+    container_name: webserver
     restart: unless-stopped
     tty: true
     ports:
       - 80:80
-      - 443:443
     volumes:
       - ./app/:/app
       - ./nginx/:/etc/nginx/conf.d/
@@ -19,6 +18,7 @@ services:
   # PHP (fpm) app container
   php:
     build: ./php/
+    container_name: applications
     restart: unless-stopped
     tty: true
     volumes:
@@ -29,6 +29,7 @@ services:
   # Mysql data container
   data:
     image: mysql:latest
+    container_name: database
     ports:
       - 3306:3306
     environment:
