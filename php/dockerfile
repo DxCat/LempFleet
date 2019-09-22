@@ -1,42 +1,32 @@
-FROM php:7.3-fpm
+FROM php:7.3-fpm-alpine
 
 WORKDIR /app
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    jpegoptim optipng pngquant gifsicle \
-    default-mysql-client \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    build-essential \
+RUN apk --no-cache --update add curl nano \
     libpng-dev \
     libzip-dev \
-    locales \
+    zlib-dev \
     unzip \
-    nano \
-    curl \
-    git \
-    zip
+    zip \
+    git
 
 # Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
 # Install extensions
-RUN docker-php-ext-install pdo_mysql mysqli mbstring zip exif pcntl
-RUN docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
-RUN docker-php-ext-install gd
+RUN docker-php-ext-install gd pdo_mysql mysqli mbstring zip exif pcntl
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Add user for applications
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN addgroup -S www && adduser -S www -G www
 
-# Copy existing application directory permissions
+# # Copy existing application directory permissions
 COPY --chown=www:www . /app
 
-# Change current user to www
+# # Change current user to www
 USER www
 
 # Expose port 9000 and start php-fpm server
