@@ -7,6 +7,8 @@ mysql, nginx, and having to build/rebuild tons of images.
 
 Well, no matter what your reason is. Here's a very simple, drop-in, multi-site setup for docker on a LEMP stack.
 
+**Laravel 6.0 support ready out-of-the-box**
+
 # Stacks
 1) Linux Alpine (php:7.3-fpm-alpine)
     - Installed packages : `libpng-dev libzip-dev zlib-dev unzip zip git composer`
@@ -54,7 +56,7 @@ Example
 - php
 - docker-compose.yml
 ```
-2) Create nginx cnf file for your projects
+2) Create nginx conf file for your projects
 ```
 - app
 - mysql
