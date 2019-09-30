@@ -61,8 +61,8 @@ Example
 - app
 - mysql
 - nginx
-  - project1.cnf <-- this
-  - project2.cnf <-- and this
+  - project1.conf <-- this
+  - project2.conf <-- and this
 - php
 - docker-compose.yml
 ```
