@@ -26,6 +26,7 @@ $ git clone https://github.com/askaoru/LempFleet docker
 $ cd docker && docker-compose up -d
 ```
 3) That's all! You should be able to see that the containers are running and exec into them!  
+
 To check for running services run
 ```bash
 $ docker-compose ps
@@ -36,7 +37,8 @@ applications   docker-php-entrypoint php-fpm   Up      9000/tcp
 database       docker-entrypoint.sh mysqld     Up      0.0.0.0:3306->3306/tcp, 33060/tcp
 webserver      nginx -g daemon off;            Up      0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp
 ```
-Tp access the services container run
+
+To access the services container run
 ```bash
 $ docker exec -it applications /bin/sh
 $ docker exec -it database /bin/sh 
