@@ -42,7 +42,7 @@ To access the services container run
 ```bash
 $ docker exec -it applications /bin/sh
 $ docker exec -it database /bin/sh 
-$ docker exec -it database /bin/sh
+$ docker exec -it webserver /bin/sh
 ```
 
 # Adding a project
