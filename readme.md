@@ -78,8 +78,8 @@ server {
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;
     
-    server_name project.test; # Change accordingly
-    root /app/project; # Change accordingly
+    server_name project1.test; # Change accordingly
+    root /app/project1; # Change accordingly
     
     location ~ \.php$ {
         try_files $uri =404;
