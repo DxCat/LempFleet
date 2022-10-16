@@ -7,10 +7,10 @@ mysql, nginx, and having to build/rebuild tons of images.
 
 Well, no matter what your reason is. Here's a very simple, drop-in, multi-site setup for docker on a LEMP stack.
 
-**Laravel 6.0 support ready out-of-the-box**
+**Laravel 9.x support ready out-of-the-box**
 
 # Stacks
-1) Linux Alpine (php:7.3-fpm-alpine)
+1) Linux Alpine (php:8.1-fpm-alpine)
     - Installed packages : `libpng-dev libzip-dev zlib-dev unzip zip git composer`
     - Installed php extensions : `gd pdo_mysql mysqli mbstring zip exif pcntl`
 2) NGINX (nginx:alpine)
@@ -19,7 +19,7 @@ Well, no matter what your reason is. Here's a very simple, drop-in, multi-site s
 # Setting up
 1) Clone this repository
 ```bash
-$ git clone https://github.com/askaoru/LempFleet docker
+$ git clone https://github.com/dxcat/LempFleet docker
 ```
 2) Go into the directory and start the containers
 ```bash
@@ -104,5 +104,5 @@ $ docker-compose down && docker-compose up -d
 # That's all!
 Feel free to open an issue if you have any question and pull requests are appreciated!
 
-For more examples on commonly used container, check it out [here](https://github.com/askaoru/LempFleet/blob/master/examples.md).
+For more examples on commonly used container, check it out [here](https://github.com/dxcat/LempFleet/blob/master/examples.md).
 
